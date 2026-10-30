@@ -153,6 +153,17 @@
             letter-spacing: .3px;
         }
 
+        /* Quote motivasi: ringan, statis, dan responsif */
+        .motivation-quote {
+            width: min(520px, 88vw);
+            margin: 2px 0 0;
+            color: #E5F0FF;
+            font-size: clamp(12px, 2.5vw, 14px);
+            line-height: 1.65;
+            font-style: italic;
+            text-shadow: 0 1px 8px rgba(0, 0, 0, .22);
+        }
+
         /* Teks loading saja, tanpa garis animasi */
         .loading-area {
             width: min(230px, 75vw);
@@ -243,8 +254,9 @@
         <h1 class="app-title">JAFUNG Online</h1>
 
         <p class="subtitle">
-            Layanan Jabatan Fungsional Berbasis Elektronik
         </p>
+
+        <p class="motivation-quote" id="motivationQuote"></p>
 
         <div class="loading-area">
             <div class="loading-text">
@@ -269,6 +281,19 @@
             var loader = document.getElementById('loader');
             var frame = document.getElementById('appFrame');
             var finished = false;
+
+            /* Pilih satu quote secara acak setiap halaman dibuka */
+            var quotes = [
+                'Pelayanan yang tulus adalah wujud nyata pengabdian kepada masyarakat.',
+                'Integritas berarti tetap lurus, wujud nyata pengabdian kepada masyarakat.',
+                'Disiplin dalam tugas, jujur dalam tindakan, dan tulus dalam pelayanan.',
+                'Jadilah ASN yang bekerja dengan hati, bertindak dengan tanggung jawab, dan memberi manfaat.',
+                'Kepercayaan publik tumbuh dari sikap konsisten, kerja keras, dan integritas.'
+            ];
+            var quoteElement = document.getElementById('motivationQuote');
+            if (quoteElement) {
+                quoteElement.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+            }
 
             window.hideLoader = function () {
                 if (finished) return;
